@@ -12,34 +12,34 @@ $ swift test
 Building for debugging...
 [1 / 11]
 Build complete! (0.31 sec)
-Test Suite 'All tests' started at 2026-06-21 21:08:13.511.
-Test Suite 'All tests' passed at 2026-06-21 21:08:13.512.
+Test Suite 'All tests' started at 2026-06-21 21:25:07.388.
+Test Suite 'All tests' passed at 2026-06-21 21:25:07.388.
 	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
 ◇ Test run started.
 ↳ Testing Library Version: 2067.1
 ↳ Target Platform: arm64e-apple-macos14.0
-◇ Suite HybridAssistantTests started.
 ◇ Suite EscalationPolicyTests started.
-◇ Test transportFailureDoesNotEscalate() started.
-◇ Test escalatesWhenOnDeviceIsUnavailable() started.
-◇ Test staysOnDeviceForASimplePrompt() started.
-◇ Test escalatesWhenOnDeviceIsRateLimited() started.
-◇ Test longPromptRoutesStraightToCloudWithoutTouchingOnDevice() started.
+◇ Suite HybridAssistantTests started.
 ◇ Test reasoningKeywordGoesToCloud() started.
-◇ Test escalatesWhenContextIsExceeded() started.
 ◇ Test shortLocalPromptStaysOnDevice() started.
+◇ Test escalatesWhenOnDeviceIsUnavailable() started.
 ◇ Test unavailableOnDeviceForcesCloud() started.
 ◇ Test longPromptGoesToCloud() started.
-✔ Test reasoningKeywordGoesToCloud() passed after 0.001 seconds.
-✔ Test unavailableOnDeviceForcesCloud() passed after 0.001 seconds.
-✔ Test shortLocalPromptStaysOnDevice() passed after 0.001 seconds.
-✔ Test escalatesWhenOnDeviceIsUnavailable() passed after 0.001 seconds.
+◇ Test escalatesWhenOnDeviceIsRateLimited() started.
+◇ Test escalatesWhenContextIsExceeded() started.
+◇ Test longPromptRoutesStraightToCloudWithoutTouchingOnDevice() started.
+◇ Test staysOnDeviceForASimplePrompt() started.
 ✔ Test longPromptGoesToCloud() passed after 0.001 seconds.
-✔ Test longPromptRoutesStraightToCloudWithoutTouchingOnDevice() passed after 0.001 seconds.
-✔ Test staysOnDeviceForASimplePrompt() passed after 0.001 seconds.
-✔ Test escalatesWhenOnDeviceIsRateLimited() passed after 0.001 seconds.
-✔ Test escalatesWhenContextIsExceeded() passed after 0.001 seconds.
+✔ Test unavailableOnDeviceForcesCloud() passed after 0.001 seconds.
+◇ Test transportFailureDoesNotEscalate() started.
+✔ Test reasoningKeywordGoesToCloud() passed after 0.001 seconds.
+✔ Test shortLocalPromptStaysOnDevice() passed after 0.001 seconds.
 ✔ Suite EscalationPolicyTests passed after 0.001 seconds.
+✔ Test longPromptRoutesStraightToCloudWithoutTouchingOnDevice() passed after 0.001 seconds.
+✔ Test escalatesWhenContextIsExceeded() passed after 0.001 seconds.
+✔ Test staysOnDeviceForASimplePrompt() passed after 0.001 seconds.
+✔ Test escalatesWhenOnDeviceIsUnavailable() passed after 0.001 seconds.
+✔ Test escalatesWhenOnDeviceIsRateLimited() passed after 0.001 seconds.
 ✔ Test transportFailureDoesNotEscalate() passed after 0.001 seconds.
 ✔ Suite HybridAssistantTests passed after 0.001 seconds.
 ✔ Test run with 10 tests in 2 suites passed after 0.001 seconds.

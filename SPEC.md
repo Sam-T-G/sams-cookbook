@@ -133,7 +133,7 @@ Twelve parts. Parts 1 through 9 are recipe-bearing and map one-to-one onto `reci
 ### Part 0 — How this cookbook works
 *Orientation. Lives in README and docs, not a recipes directory.*
 - The thesis and the recipe anatomy: the fixed template, the content balance, the currency contract.
-- The runnable workspace: the top-level `Package.swift`, app-vs-logic targets, gitignored secrets, the `recipes.yaml` manifest.
+- The runnable workspace: standalone per-recipe packages and the `scripts/test_all.sh` aggregate runner (there is no root `Package.swift`), app-vs-logic targets, gitignored secrets, the `recipes.yaml` manifest.
 - The documentation voice: the house style as a sourced rule set, shipped as a skill so Claude obeys it when drafting prose.
 
 ### Part 1 — Driving Claude Code to build iOS  (`recipes/01-driving-claude/`)
@@ -182,7 +182,7 @@ Twelve parts. Parts 1 through 9 are recipe-bearing and map one-to-one onto `reci
 - **Snapshot and UI testing:** view snapshots with a recording trait and `perceptualPrecision`; pinning a simulator for determinism; the XCUI automation escape hatch; preferring behavioral assertions for visual recipes (see section 5).
 
 ### Part 8 — Tooling and CI/CD  (`recipes/08-tooling-ci/`)
-- **Build and project generation:** the workspace `Package.swift`; `swift build` then `swift test` as the terminal-native verify loop; XcodeGen `Project.yml` for app recipes; Tuist as the scale-up modular-caching option.
+- **Build and project generation:** the per-recipe `Package.swift` and the `scripts/test_all.sh` aggregate runner; `swift build` then `swift test` as the terminal-native verify loop; XcodeGen `Project.yml` for app recipes; Tuist as the scale-up modular-caching option.
 - **Format, lint, and hooks:** `swift-format` with `--language-mode 6` and a committed config; SwiftLint via the build-tool plugin; a PostToolUse hook that formats after every edit; a hook that blocks edits to generated output.
 - **Continuous integration:** a GitHub Actions workflow (`xcodebuild test` with an xcresult artifact, no code signing for unit tests, an Xcode-version matrix, a pinned runner); a model-currency CI gate; Xcode Cloud as the Apple-native alternative; headless Claude in CI for read-only analysis.
 - **Release to TestFlight and the App Store:** `fastlane` authenticated via an App Store Connect API key kept out of tracked files; external tester groups and the 90-day build expiry; a StoreKit 2 async purchase flow.
@@ -239,7 +239,8 @@ UI
 
 Secrets
 - No Anthropic or third-party API key in the app binary. Dev keys come from a gitignored xcconfig.
-  Shipping calls go through the backend relay (see security recipe).
+  Shipping calls go through the backend relay (see `recipes/09-cross-cutting` and `samples/backend-relay`).
+  (This block is illustrative; the live `SWIFT.md` at the repo root is the source of truth.)
 
 How to work here
 - Investigate before answering. Read the relevant files first.
@@ -338,7 +339,7 @@ sams-cookbook/
 │   ├── 04-persistence-swiftdata/
 │   ├── 05-networking/
 │   ├── 06-ai-features/
-│   │   ├── on-device-summarizer/   # device-required
+│   │   ├── on-device-summarizer/   # planned (device-required), not yet built
 │   │   ├── cloud-claude-chat/
 │   │   └── hybrid-assistant/       # flagship
 │   ├── 07-testing/
@@ -388,16 +389,17 @@ These came out of the adversarial review and must be resolved before the affecte
 
 ## 13. House voice
 
-This applies to every `README.md`, recipe, and doc, and to this spec. The rules are shipped as the `/draft-recipe-prose` skill so Claude obeys them.
+This applies to every `README.md`, recipe, and doc, and to this spec. The full, canonical rule set lives in
+`context/voice-guide.md` and is shipped as the `/draft-recipe-prose` skill so Claude obeys it. The headline
+rules, with `context/voice-guide.md` as the source of truth:
 
 - We-voice by default. "I" only for a personal judgment in a reflection.
 - No em dashes. Restructure, use a comma or semicolon or parentheses, or split the sentence.
-- No AI-tell vocabulary: delve, leverage, showcase, robust, seamless, tapestry, at its core, navigate the complexities, in essence, it is worth noting.
+- No AI-tell vocabulary, and no "this isn't X, it's Y" contrast scaffolds. The banned-word list is in
+  `context/voice-guide.md`.
 - Straight quotes, not curly.
-- Captions are one to three sentences.
-- A reflection carries a difficulty encountered plus a forward note.
-- Every rule cites a published source.
-- Write like a sharp teammate, not a consultant. Plain headers beat clever ones.
+- Captions are one to three sentences. A reflection carries a difficulty encountered plus a forward note.
+- Every rule cites a published source. Write like a sharp teammate, not a consultant; plain headers win.
 
 ---
 

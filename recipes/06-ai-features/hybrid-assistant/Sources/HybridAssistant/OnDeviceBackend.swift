@@ -25,13 +25,15 @@ import Foundation
             do {
                 let response = try await session.respond(to: prompt)
                 return response.content
+            } catch let error as LanguageModelSession.GenerationError {
+                // Map the two recoverable cases so the assistant escalates to the cloud on them. Anything
+                // else is a real generation failure that a different tier cannot fix.
+                switch error {
+                case .exceededContextWindowSize: throw .contextExceeded
+                case .rateLimited: throw .rateLimited
+                default: throw .transport(String(describing: error))
+                }
             } catch {
-                // On the pinned Xcode 26.5 toolchain, match LanguageModelSession.GenerationError here and
-                // map .exceededContextWindowSize to .contextExceeded and .rateLimited to .rateLimited, so the
-                // assistant escalates to the cloud on those. The exact mapping is in this recipe's README; it
-                // is collapsed to .transport in this compiled form because that error type is deprecated on
-                // the newer SDK this repo's CI happens to build against, and the project treats warnings as
-                // errors. The escalation behavior itself is fully covered by the golden vectors.
                 throw .transport(String(describing: error))
             }
         }

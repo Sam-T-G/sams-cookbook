@@ -10,7 +10,8 @@ promote into the core parts (see `docs/currency-protocol.md`).
   a Claude provider drive a `LanguageModelSession` with the same respond / stream / guided-generation / tool
   API, turning the hybrid flagship's escalation into a one-line model swap. Includes the feature-gap table
   (no prompt-caching control, no Batch or Files, no token counting through the provider) that says when to
-  reach past it to `SwiftAnthropic` instead. (source: platform.claude.com Apple Foundation Models docs)
+  reach past it to the raw `URLSession` Messages-API client (`recipes/06-ai-features/cloud-claude-chat`)
+  instead. (source: platform.claude.com Apple Foundation Models docs)
 - **SwiftData and SwiftUI on iOS 27** — `ResultsObserver`, history-driven offline sync, sectioned queries,
   composite predicates; the SwiftUI Document API and AsyncImage HTTP caching. All beta.
 - **Toolchain frontier** — Swift 6.4, Xcode 27 XCTest and Swift Testing interoperability modes (require

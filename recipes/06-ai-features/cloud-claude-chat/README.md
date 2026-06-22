@@ -28,8 +28,9 @@ the live call. Read the concurrency-posture recipe first. Around 25 minutes.
 ## Problem
 
 We want Claude in an iOS app, with the current API surface, and without ever shipping the API key. Two
-traps make this harder than it looks. The community Swift client (`SwiftAnthropic`) is in maintenance mode
-and only emits the deprecated `budget_tokens` thinking shape, which `claude-opus-4-8` rejects with a 400.
+traps make this harder than it looks. The community Swift client (`SwiftAnthropic`, 2.2.2) only emits the
+deprecated `budget_tokens` thinking shape, which `claude-opus-4-8` rejects with a 400, and it has no effort
+control and no structured outputs.
 And the obvious shortcut, putting the key in the app and calling Anthropic directly, leaks the key to
 anyone who unzips the app.
 

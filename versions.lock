@@ -35,7 +35,7 @@ test:
 claude:
   default_model: "claude-opus-4-8"
   thinking: "adaptive"
-  effort: "enum (low | medium | high), not budget_tokens"
+  effort: "enum (low | medium | high | xhigh | max), not budget_tokens"
   output: "structured outputs (assistant prefill is removed on 4.6+)"
   source: "https://platform.claude.com/docs/en/about-claude/models/overview"
 

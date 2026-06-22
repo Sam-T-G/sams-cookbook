@@ -65,10 +65,8 @@ the real backends are thin adapters.
 
 ### The on-device backend (device-required)
 
-The compiled `OnDeviceBackend` checks availability and calls the model. On the pinned Xcode 26.5 toolchain,
-map the generation error precisely so the assistant escalates; the compiled form here collapses it to
-`.transport` only because that error type is deprecated on the newer beta SDK this repo's CI happens to use,
-and the project treats warnings as errors. On Xcode 26.5, use this catch:
+The compiled `OnDeviceBackend` checks availability and calls the model, mapping the two recoverable
+generation errors so the assistant escalates to the cloud on them:
 
 ```swift
 } catch let error as LanguageModelSession.GenerationError {
@@ -79,6 +77,10 @@ and the project treats warnings as errors. On Xcode 26.5, use this catch:
     }
 }
 ```
+
+This builds clean for the iOS 26 deployment target. On a newer SDK the editor may flag
+`GenerationError` as deprecated, but the iOS 26 target build does not, so it stays inside the strict
+warnings-as-errors posture.
 
 ### The cloud backend (wraps the cloud-claude-chat client)
 
@@ -106,6 +108,10 @@ struct CloudBackend: LanguageBackend {
 ```
 
 ### Assembling it
+
+This presumes the copied-in `CloudBackend` / `ClaudeClient` from above and an on-device build (the
+`OnDeviceBackend` is behind `#if canImport(FoundationModels)`), so it is construction guidance, not code that
+compiles against the package as checked in.
 
 ```swift
 let assistant = HybridAssistant(
