@@ -47,3 +47,17 @@ recipes:
       A typed URLSession client for the Claude Messages API that holds no API key (the backend relay does).
       Encodes claude-opus-4-8 with adaptive thinking, the effort control, and structured outputs; golden
       vectors assert the request shape and the response decoding. The live call is device-verified.
+
+  - title: "The hybrid on-device + Claude assistant"
+    path: "recipes/06-ai-features/hybrid-assistant"
+    part: "06-ai-features"
+    tier: "logic-runnable"
+    tags: [AI-OnDevice, AI-Cloud, Claude-Native-Build, Testing]
+    author: "Samuel Gerungan"
+    built_against: "Swift 6.3 / Xcode 26.5 / iOS 26 / claude-opus-4-8"
+    date: "2026-06-21"
+    description: >
+      The flagship. Routes between an on-device Foundation Models backend and cloud Claude behind a shared
+      LanguageBackend protocol, with a pure EscalationPolicy and golden vectors over the routing and
+      escalation (fake backends, no device). The real on-device backend compiles behind canImport and is
+      device-verified.

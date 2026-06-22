@@ -15,9 +15,11 @@ Foundation Models and cloud Claude, unified under one API shape.
   §12) settled the client choice: the raw client is primary because `SwiftAnthropic` can't send the newer
   controls. Still to add: a Claude tool defined from Swift, prompt caching, and the mid-conversation system
   note for multi-turn chats.
-- **The hybrid on-device + Claude assistant (flagship)** — on-device for quick private turns, escalating to
-  cloud Claude for frontier reasoning, with the pure routing logic golden-vector tested and the glue
-  verified on device.
+- **The hybrid on-device + Claude assistant (flagship)** (built, logic-runnable) — `hybrid-assistant/`.
+  Routes between an on-device Foundation Models backend and cloud Claude behind a shared `LanguageBackend`
+  protocol, with a pure `EscalationPolicy` and 10 golden vectors over the routing and escalation (fake
+  backends, no device). The real on-device backend compiles behind `canImport(FoundationModels)` and is
+  device-verified.
 - **Agentic iOS apps that call Claude** — the augmented-LLM ladder (one message, then a routing workflow,
   then a tool-use agent loop), escalating only when a test proves the simpler tier insufficient.
 
