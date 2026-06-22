@@ -21,3 +21,16 @@ recipes:
       Sets the project-wide concurrency baseline: MainActor default isolation, strict concurrency
       complete, warnings as errors. A pure-logic example with golden-vector tests that proves the
       whole pipeline (template, /new-recipe, verify loop, CI) before any device-required recipe.
+
+  - title: "Migrating from Combine and ObservableObject"
+    path: "recipes/02-language-concurrency/migration-from-combine"
+    part: "02-language-concurrency"
+    tier: "logic-runnable"
+    tags: [Concurrency, Observation, Migration, Claude-Native-Build, Testing]
+    author: "Samuel Gerungan"
+    built_against: "Swift 6.3 / Xcode 26.5 / iOS 26 / claude-opus-4-8"
+    date: "2026-06-21"
+    description: >
+      Walks a real ObservableObject + Combine view model to @Observable plus an actor, with a parity test
+      that proves the rewrite preserves behavior step for step. The migration on-ramp from the shape most
+      existing iOS code actually starts at.

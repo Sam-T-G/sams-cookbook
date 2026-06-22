@@ -13,7 +13,8 @@ and `ObservableObject` shape that most existing code actually starts from.
 - **@Observable end to end** (planned) — an `@Observable` model observed by SwiftUI and driven by a
   background task via the `Observations` async sequence.
 - **Typed errors and value semantics** (planned) — `throws(E)` vs untyped throws, a small attached macro.
-- **The migration on-ramp** (planned) — take a real `ObservableObject` + Combine + `.main`-closure +
-  `Date`-timer slice on Swift 5 / iOS 16 and walk it to the posture above.
+- **Migrating from Combine and ObservableObject** (built, logic-runnable) — `migration-from-combine/`.
+  Walks a real `ObservableObject` + Combine store to `@Observable` plus an actor, with a parity test that
+  proves the rewrite preserves behavior step for step. The on-ramp from where most code actually starts.
 
 Add a recipe with `/new-recipe 02-language-concurrency <slug>`.
