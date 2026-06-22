@@ -33,7 +33,9 @@ the primary source for any API it names and any "new in" claim it makes.
 ## Secondary
 
 - **SwiftAnthropic** (jamesrochabrun): https://github.com/jamesrochabrun/SwiftAnthropic
-  The de-facto community Messages-API client, pending the SwiftAnthropic verification spike (see SPEC §12).
+  Verified at 2.2.2 (2026-04-18); an option for basic chat, streaming, and tool use only. It cannot send
+  adaptive thinking, the effort control, or structured outputs, so the cookbook's primary client is a raw
+  `URLSession` `/v1/messages` client (see `recipes/06-ai-features/cloud-claude-chat`).
 - **Point-Free**: https://github.com/pointfreeco — swift-dependencies and swift-snapshot-testing.
 - **MV-over-MVVM and modern-SwiftUI authors**: Ricouard, Hudson, Jabrayilov, Panferova, NimbleHQ, objc.io.
 - **Practical concurrency, persistence, tooling authors**: Wals, van der Lee, Sundell, Fatbobman.

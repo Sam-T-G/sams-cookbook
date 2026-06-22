@@ -34,3 +34,16 @@ recipes:
       Walks a real ObservableObject + Combine view model to @Observable plus an actor, with a parity test
       that proves the rewrite preserves behavior step for step. The migration on-ramp from the shape most
       existing iOS code actually starts at.
+
+  - title: "Cloud Claude from Swift"
+    path: "recipes/06-ai-features/cloud-claude-chat"
+    part: "06-ai-features"
+    tier: "logic-runnable"
+    tags: [AI-Cloud, Networking, Claude-Native-Build, Testing]
+    author: "Samuel Gerungan"
+    built_against: "Swift 6.3 / Xcode 26.5 / iOS 26 / claude-opus-4-8"
+    date: "2026-06-21"
+    description: >
+      A typed URLSession client for the Claude Messages API that holds no API key (the backend relay does).
+      Encodes claude-opus-4-8 with adaptive thinking, the effort control, and structured outputs; golden
+      vectors assert the request shape and the response decoding. The live call is device-verified.

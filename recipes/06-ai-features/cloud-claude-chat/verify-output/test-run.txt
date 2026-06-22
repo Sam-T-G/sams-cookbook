@@ -1,0 +1,44 @@
+# Captured verify output for the cloud-claude-chat recipe
+# Toolchain: Target: arm64-apple-macosx27.0.0
+# Captured: 2026-06-21
+
+$ swift build
+Building for debugging...
+Build complete! (0.17 sec)
+
+$ swift test
+Building for debugging...
+[2 / 8] CloudClaudeTests-product
+[4 / 10] CloudClaudeTests-product
+[7 / 11] CloudClaudeTests-product
+[9 / 11] CloudClaudeTests-product
+Build complete! (0.85 sec)
+Test Suite 'All tests' started at 2026-06-21 20:30:12.639.
+Test Suite 'All tests' passed at 2026-06-21 20:30:12.640.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+◇ Test run started.
+↳ Testing Library Version: 2067.1
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Suite RequestEncodingTests started.
+◇ Suite ResponseDecodingTests started.
+◇ Suite ClientRequestTests started.
+◇ Test decodesAndConcatenatesText() started.
+◇ Test refusalCarriesEmptyText() started.
+◇ Test encodesTheModernRequestShape() started.
+◇ Test makeRequestSetsPathMethodAndHeaders() started.
+◇ Test omitsSystemWhenNotSet() started.
+◇ Test omitsParametersTheModelRejects() started.
+◇ Test errorDescriptionsAreHuman() started.
+◇ Test structuredOutputEncodesAsAJSONSchema() started.
+✔ Test errorDescriptionsAreHuman() passed after 0.001 seconds.
+✔ Test refusalCarriesEmptyText() passed after 0.001 seconds.
+✔ Test decodesAndConcatenatesText() passed after 0.001 seconds.
+✔ Suite ResponseDecodingTests passed after 0.001 seconds.
+✔ Test structuredOutputEncodesAsAJSONSchema() passed after 0.001 seconds.
+✔ Test encodesTheModernRequestShape() passed after 0.001 seconds.
+✔ Test omitsParametersTheModelRejects() passed after 0.001 seconds.
+✔ Test omitsSystemWhenNotSet() passed after 0.001 seconds.
+✔ Suite RequestEncodingTests passed after 0.001 seconds.
+✔ Test makeRequestSetsPathMethodAndHeaders() passed after 0.004 seconds.
+✔ Suite ClientRequestTests passed after 0.004 seconds.
+✔ Test run with 8 tests in 3 suites passed after 0.004 seconds.

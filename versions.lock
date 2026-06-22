@@ -39,11 +39,21 @@ claude:
   output: "structured outputs (assistant prefill is removed on 4.6+)"
   source: "https://platform.claude.com/docs/en/about-claude/models/overview"
 
+claude_client:
+  # Decided by the section-12 spike (verified 2026-06-21). No official Anthropic Swift SDK exists.
+  primary: "raw URLSession /v1/messages client (see recipes/06-ai-features/cloud-claude-chat)"
+  reason: >
+    The cookbook standardizes on adaptive thinking, the effort control, and structured outputs.
+    SwiftAnthropic 2.2.2 (2026-04-18) sends none of these (only the deprecated budget_tokens thinking
+    shape, which claude-opus-4-8 rejects with a 400), so the raw client is primary.
+  request_shape: "thinking: {type: adaptive}; output_config: {effort, format}; no budget_tokens/temperature/prefill"
+
 libraries:
   swift-anthropic:
     repo: "https://github.com/jamesrochabrun/SwiftAnthropic"
-    status: "de-facto community Messages-API client; pin exact version after the section-12 spike"
-    note: "No official Anthropic Swift SDK exists. Fallback is a raw URLSession /v1/messages client."
+    version_checked: "2.2.2 (2026-04-18)"
+    status: "optional, for basic chat/streaming/tool use only; Model.other(\"claude-opus-4-8\") works"
+    note: "Cannot send adaptive thinking, effort, or structured outputs. Not the primary client."
   swift-dependencies:
     repo: "https://github.com/pointfreeco/swift-dependencies"
   swift-snapshot-testing:

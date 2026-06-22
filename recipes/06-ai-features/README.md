@@ -9,9 +9,12 @@ Foundation Models and cloud Claude, unified under one API shape.
   guided generation with `@Generable` / `@Guide`, a `Tool` the model can call, the availability switch,
   streaming partial snapshots. Needs eligible hardware with Apple Intelligence enabled; ships a recorded
   transcript.
-- **Cloud Claude from Swift** — a chat call via the locked Swift client, adaptive thinking and the effort
-  control, a Claude tool defined from Swift, structured output into a `Codable` type, the hard no-key-in-
-  binary rule, prompt caching, a mid-conversation system note for multi-turn chats.
+- **Cloud Claude from Swift** (built, logic-runnable) — `cloud-claude-chat/`. A typed `URLSession` client
+  for the Messages API that holds no API key: adaptive thinking, the effort control, and structured outputs
+  on `claude-opus-4-8`, with golden vectors over the request shape and response decoding. The spike (SPEC
+  §12) settled the client choice: the raw client is primary because `SwiftAnthropic` can't send the newer
+  controls. Still to add: a Claude tool defined from Swift, prompt caching, and the mid-conversation system
+  note for multi-turn chats.
 - **The hybrid on-device + Claude assistant (flagship)** — on-device for quick private turns, escalating to
   cloud Claude for frontier reasoning, with the pure routing logic golden-vector tested and the glue
   verified on device.
