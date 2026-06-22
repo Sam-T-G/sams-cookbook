@@ -1,4 +1,4 @@
-# Sam's Cookbook — Specification
+# Sam's Cookbook: Specification
 
 A modern, Claude-native iOS development cookbook. Every recipe teaches a real iOS technique and shows how to drive Claude Code to build it, with runnable code and tests.
 
@@ -108,18 +108,18 @@ Every recipe is a directory with a `README.md` that follows this fixed section o
 
 Recipes are fully standalone. Each is its own buildable target with no dependency on any other recipe, so a reader can clone the repo and build a single recipe in isolation. The "Decision guidance" and "Next steps" sections cross-link to related recipes as prose only, never as a code dependency. There is no composed demo app that several recipes feed into.
 
-1. **Title and one-line promise** — the concrete iOS pain solved, quantified where possible.
-2. **Tags and metadata** — capability tags, author, runnability tier, and "built against Swift 6.3 / Xcode 26.5 / iOS 26 / `claude-opus-4-8` on DATE."
-3. **Pinned versions** — exact Swift / Xcode / iOS, Claude model, and library versions, with a dated "current as of" note and source links (drawn from `versions.lock`).
-4. **Prerequisites** — skills assumed, simulator vs device, time estimate, prior recipes.
-5. **Problem** — the modern iOS pain, with a measurable baseline where one exists.
-6. **Baseline** — the naive or pre-modern approach, runnable, with its measured shortcoming.
-7. **Modern solution (Swift)** — the idiomatic Swift 6 implementation, each layer individually buildable.
-8. **Build it with Claude** — the one-liner prompt; the `SWIFT.md` / `CLAUDE.md` rules that constrain Claude; the explore/plan/implement/commit flow, or the AskUserQuestion to `SPEC.md` interview for larger work; the verify loop Claude runs.
-9. **Verify / tests** — the Swift Testing golden-vector target for pure logic and the on-device check for framework glue, with real captured output retained in `verify-output/`.
-10. **Pitfalls and trade-offs** — concurrency footguns, device-vs-simulator differences, cost and latency, candid limitations.
-11. **Decision guidance** — when to use this approach versus the alternatives.
-12. **Reflection** — a difficulty encountered plus a forward note.
+1. **Title and one-line promise**: the concrete iOS pain solved, quantified where possible.
+2. **Tags and metadata**: capability tags, author, runnability tier, and "built against Swift 6.3 / Xcode 26.5 / iOS 26 / `claude-opus-4-8` on DATE."
+3. **Pinned versions**: exact Swift / Xcode / iOS, Claude model, and library versions, with a dated "current as of" note and source links (drawn from `versions.lock`).
+4. **Prerequisites**: skills assumed, simulator vs device, time estimate, prior recipes.
+5. **Problem**: the modern iOS pain, with a measurable baseline where one exists.
+6. **Baseline**: the naive or pre-modern approach, runnable, with its measured shortcoming.
+7. **Modern solution (Swift)**: the idiomatic Swift 6 implementation, each layer individually buildable.
+8. **Build it with Claude**: the one-liner prompt; the `SWIFT.md` / `CLAUDE.md` rules that constrain Claude; the explore/plan/implement/commit flow, or the AskUserQuestion to `SPEC.md` interview for larger work; the verify loop Claude runs.
+9. **Verify / tests**: the Swift Testing golden-vector target for pure logic and the on-device check for framework glue, with real captured output retained in `verify-output/`.
+10. **Pitfalls and trade-offs**: concurrency footguns, device-vs-simulator differences, cost and latency, candid limitations.
+11. **Decision guidance**: when to use this approach versus the alternatives.
+12. **Reflection**: a difficulty encountered plus a forward note.
 13. **Next steps and related recipes.**
 
 Content balance per recipe targets roughly 30% explanation, 50% runnable code, 15% results and captured output, 5% caveats.
@@ -130,13 +130,13 @@ Content balance per recipe targets roughly 30% explanation, 50% runnable code, 1
 
 Twelve parts. Parts 1 through 9 are recipe-bearing and map one-to-one onto `recipes/01-…` through `recipes/09-…`. Part 0 lives in `README.md` and `docs/`. Appendices A and B live in `appendix/`.
 
-### Part 0 — How this cookbook works
+### Part 0: How this cookbook works
 *Orientation. Lives in README and docs, not a recipes directory.*
 - The thesis and the recipe anatomy: the fixed template, the content balance, the currency contract.
 - The runnable workspace: standalone per-recipe packages and the `scripts/test_all.sh` aggregate runner (there is no root `Package.swift`), app-vs-logic targets, gitignored secrets, the `recipes.yaml` manifest.
 - The documentation voice: the house style as a sourced rule set, shipped as a skill so Claude obeys it when drafting prose.
 
-### Part 1 — Driving Claude Code to build iOS  (`recipes/01-driving-claude/`)
+### Part 1: Driving Claude Code to build iOS  (`recipes/01-driving-claude/`)
 *The Claude-native foundation every later "Build it with Claude" section assumes.*
 - **The `.claude` setup and `SWIFT.md`:** a sub-200-line `CLAUDE.md` that links context docs on demand; the canonical `SWIFT.md` (section 8); path-scoped rules versus always-loaded rules and the token trade-off; baking in the agentic-coding prompt blocks; why we avoid "CRITICAL" / "You MUST" phrasing on Opus 4.8.
 - **The verify loop for Swift:** the two-tier loop (golden vectors plus on-device build); a Stop hook that blocks until `swift test` is green; an adversarial code-review subagent scoped to correctness, not style; capturing real test output as evidence.
@@ -144,7 +144,7 @@ Twelve parts. Parts 1 through 9 are recipe-bearing and map one-to-one onto `reci
 - **Subagents and the single-writer doctrine:** subagents as isolated research and review workers, never coordinating peers; why `Explore` and `Plan` forks skip `CLAUDE.md` / `SWIFT.md` and how to fix it with a tested artifact (section 12); the fan-out token cost; avoiding over-spawning on Opus 4.8.
 - **Explore, plan, implement, commit:** the four-phase loop on a real feature; the AskUserQuestion to `SPEC.md` interview, then a fresh execution session; provide-specific-context prompting with before/after pairs; headless and CI via `claude -p`.
 
-### Part 2 — Modern Swift language and concurrency  (`recipes/02-language-concurrency/`)
+### Part 2: Modern Swift language and concurrency  (`recipes/02-language-concurrency/`)
 *The language baseline the whole book assumes, plus the migration on-ramp.*
 - **The concurrency posture:** `MainActor` default isolation, strict concurrency complete, warnings as errors, with the exact `Package.swift` `SwiftSetting` snippet; reading a data-race error and fixing it the modern way.
 - **Actors, Sendable, and offloading:** an actor for shared mutable non-UI state; `@concurrent` versus `nonisolated(nonsending)`; the `@MainActor.assumeIsolated` delegate bridge; deliberate `Sendable` boundaries; `Task` plus a clock, never `Timer`.
@@ -152,54 +152,54 @@ Twelve parts. Parts 1 through 9 are recipe-bearing and map one-to-one onto `reci
 - **Typed errors and value semantics:** a typed domain error (`enum`, `Error`, `CustomStringConvertible`); `throws(E)` versus untyped throws; value types by default; a small attached macro tested via `assertMacroExpansion`.
 - **The migration on-ramp (from the WAND shape):** take a real `ObservableObject` + Combine + `.main`-closure + `Date`-timer slice on Swift 5 / iOS 16 and walk it to `@Observable` + actor + `Task`-clock under strict concurrency complete. This is the reader's actual starting point.
 
-### Part 3 — SwiftUI and app architecture  (`recipes/03-swiftui-architecture/`)
+### Part 3: SwiftUI and app architecture  (`recipes/03-swiftui-architecture/`)
 - **MV architecture and vertical slices:** MV over MVVM (`@Observable` models in `@State`, `@Bindable` bindings, `@Environment` for shared instances), with an honest "when MVVM still earns its keep" sidebar; the vertical-slice local-SPM workspace with inward-only dependencies over a `Core` package.
 - **Dependency injection and the clock:** Point-Free `swift-dependencies` as one idiom (live / preview / test values, a controllable clock, the Swift Testing trait), alongside the house plain-Swift value-type default.
 - **Navigation and state:** type-safe `NavigationStack` routing in a `Routing/` slice; view identity and the view tree as the mental model that prevents bugs; who owns `@State`, `@Bindable`, `@Environment`; deep links into a `NavigationPath`.
 - **Liquid Glass and accessibility:** Liquid Glass on the navigation layer only, content kept opaque; honoring Reduce Transparency and Increase Contrast; a distinctive theme that avoids templated defaults; the iOS 26.1 menu-in-container pitfall.
 
-### Part 4 — Persistence and data with SwiftData  (`recipes/04-persistence-swiftdata/`)
+### Part 4: Persistence and data with SwiftData  (`recipes/04-persistence-swiftdata/`)
 - **Modeling with SwiftData:** a `@Model` graph with relationships; class inheritance and is-type predicates; `#Index` / `#Unique` / `#Expression`; an in-memory `ModelContainer` for golden-vector query tests.
 - **Background writes the Swift 6 way:** a `@ModelActor` importer taking `Sendable` inputs, passing `PersistentIdentifier` across actors, never letting `ModelContext` or `@Model` escape, compiling clean under strict concurrency complete.
 - **Migrations without data loss:** `VersionedSchema` plus `SchemaMigrationPlan` (lightweight and custom stages); `propertiesToFetch` to bound memory; a migration test that asserts no data is lost.
 - **When not SwiftData:** the Core Data coexistence checklist; the iOS 17 floor as the decision boundary; the `@Attribute(.codable)` escape hatch and its caveats; choosing SwiftData versus Core Data versus a SQLite library.
 
-### Part 5 — Networking  (`recipes/05-networking/`)
+### Part 5: Networking  (`recipes/05-networking/`)
 - **A typed networking layer:** an actor API client over `URLSession` async-await; validating `HTTPURLResponse` status into a typed domain error; a centralized `JSONDecoder`; `os.Logger` per subsystem; streaming a response with `bytes(for:)`.
 - **Cancellation and parallel fetch:** cancel-previous search-as-you-type; honoring cancellation with `try Task.checkCancellation()`; `withThrowingTaskGroup` with bounded concurrency; SwiftUI `.task` auto-cancel.
 - **HTTP caching done right:** configuring `URLCache`; ETag and 304 conditional revalidation; filtering with `willCacheResponse`; why not to subclass `URLCache`.
 
-### Part 6 — AI features in iOS apps  (`recipes/06-ai-features/`)
+### Part 6: AI features in iOS apps  (`recipes/06-ai-features/`)
 *The headline part, where the two axes meet the product.*
 - **On-device with Foundation Models:** a summarizer on the on-device model; guided generation with `@Generable` and `@Guide`; a `Tool` the model can call; the availability switch (device not eligible, not enabled, not ready); streaming as cumulative partial snapshots. (device-required tier)
 - **Cloud Claude from Swift:** a chat call via the locked Swift client; adaptive thinking and the effort control; defining a Claude tool from Swift with consolidated, namespaced, semantic fields; structured output decoded into a `Codable` type; the hard rule that no API key ships in the binary; prompt caching with a stable system prefix; a mid-conversation system note for multi-turn chats.
 - **The hybrid on-device + Claude assistant (flagship):** on-device for quick private turns, escalating to cloud Claude for frontier reasoning, with the pure routing logic unit-tested as golden vectors and the framework glue verified on device; handling `rateLimited` and `contextSizeExceeded`; a forward note on the one-line provider swap in Appendix A.
 - **Agentic iOS apps that call Claude:** the augmented-LLM ladder recast for iOS (one message, then a routing workflow, then a real tool-use agent loop), each a runnable target, escalating only when a test proves the simpler tier insufficient.
 
-### Part 7 — Testing  (`recipes/07-testing/`)
+### Part 7: Testing  (`recipes/07-testing/`)
 - **Swift Testing fundamentals:** `@Test` / `@Suite` / `#expect` / `#require`; `init` / `deinit` replacing `setUp` / `tearDown`; traits; the two XCTest-only escape hatches.
 - **Golden-vector tests for pure logic:** parameterized cases with `@Test(arguments: zip(...))`; when to add `.serialized`; testing a typed error with `#expect(throws:)`; exit tests for precondition logic and why not on an iOS device.
 - **Snapshot and UI testing:** view snapshots with a recording trait and `perceptualPrecision`; pinning a simulator for determinism; the XCUI automation escape hatch; preferring behavioral assertions for visual recipes (see section 5).
 
-### Part 8 — Tooling and CI/CD  (`recipes/08-tooling-ci/`)
+### Part 8: Tooling and CI/CD  (`recipes/08-tooling-ci/`)
 - **Build and project generation:** the per-recipe `Package.swift` and the `scripts/test_all.sh` aggregate runner; `swift build` then `swift test` as the terminal-native verify loop; XcodeGen `Project.yml` for app recipes; Tuist as the scale-up modular-caching option.
 - **Format, lint, and hooks:** `swift-format` with `--language-mode 6` and a committed config; SwiftLint via the build-tool plugin; a PostToolUse hook that formats after every edit; a hook that blocks edits to generated output.
 - **Continuous integration:** a GitHub Actions workflow (`xcodebuild test` with an xcresult artifact, no code signing for unit tests, an Xcode-version matrix, a pinned runner); a model-currency CI gate; Xcode Cloud as the Apple-native alternative; headless Claude in CI for read-only analysis.
 - **Release to TestFlight and the App Store:** `fastlane` authenticated via an App Store Connect API key kept out of tracked files; external tester groups and the 90-day build expiry; a StoreKit 2 async purchase flow.
 
-### Part 9 — Cross-cutting concerns  (`recipes/09-cross-cutting/`)
+### Part 9: Cross-cutting concerns  (`recipes/09-cross-cutting/`)
 - **Accessibility as a cross-cutting rule:** Dynamic Type that reflows; VoiceOver labels, hints, and traits on a custom control; `accessibilityLinkedGroup` for a reading view; an accessibility audit pass driven by Claude. (Part 9 is the canonical, normative treatment; Part 3 references it rather than re-teaching it.)
 - **Performance and observability:** `os.Logger` subsystems and signposts; catching unexpected `@Observable` re-renders; a centralized `Config` enum; profile, fix, verify.
 - **Security (normative home for the secrets discipline):** Keychain storage with the right accessibility class; App Attest gating a backend relay; the backend-relay contract for Claude API calls; what never goes in a tracked file. Parts 0, 6, and 8 link here rather than restating it.
 - **The modern 2026 surface:** an App Intent powering Siri, Shortcuts, and Spotlight, with golden-path tests; a `Chart3D` / `SurfacePlot` visualization; an App-Intent-driven interactive widget and a Live Activity; on-device Translation with `translationTask`.
 
-### Appendix A — The iOS 27 frontier (forward-looking)  (`appendix/A-ios27-frontier/`)
+### Appendix A: The iOS 27 frontier (forward-looking)  (`appendix/A-ios27-frontier/`)
 Every iOS 27 / Xcode 27 / Swift 6.4 beta feature is quarantined here, each entry dated "current as of June 2026 (WWDC26 beta)" and marked not-yet-GM, so no core recipe depends on pre-release APIs.
 - The third-party Claude language-model provider for Foundation Models (the one-line model swap that turns the hybrid flagship's escalation into a provider change), with the feature-gap table that says when to reach past it to the Messages-API client instead.
 - iOS 27 SwiftData (`ResultsObserver`, history-driven offline sync, sectioned queries, composite predicates) and SwiftUI (the Document API, AsyncImage HTTP caching).
 - The toolchain frontier: Swift 6.4, Xcode 27 test-interoperability modes, Instruments 27.
 
-### Appendix B — Contributing and the currency protocol  (`appendix/B-contributing/`)
+### Appendix B: Contributing and the currency protocol  (`appendix/B-contributing/`)
 - Adding a recipe: the `/new-recipe` scaffold, the `recipes.yaml` schema and tag set, dated-and-attributed authority, the pre-commit and CI gates, keeping the Obsidian mirror in sync from one source of truth.
 - The currency recheck protocol: the version-fact checklist, the open questions to resolve before publishing, and the documented promotion event for moving an Appendix A feature into a core recipe at iOS 27 GA.
 
@@ -214,7 +214,7 @@ This is what makes the book Claude-native rather than a normal cookbook with a c
 **The canonical `SWIFT.md`** encodes the locked idiom as constraints Claude must obey. It is imported from `CLAUDE.md` (or applied as a path-scoped rule on `**/*.swift`). Proposed content:
 
 ```
-# SWIFT.md — how Claude writes Swift in this repo
+# SWIFT.md: how Claude writes Swift in this repo
 
 Concurrency
 - Swift 6 language mode, strict concurrency complete, warnings as errors.

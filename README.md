@@ -53,18 +53,18 @@ recorded transcript instead.
 
 ## How the book is organized
 
-- **Part 1 — Driving Claude Code to build iOS** (`recipes/01-driving-claude`): the `.claude/` setup, the
+- **Part 1: Driving Claude Code to build iOS** (`recipes/01-driving-claude`): the `.claude/` setup, the
   canonical `SWIFT.md`, the verify loop, skills, and subagents that every recipe assumes.
-- **Part 2 — Modern Swift language and concurrency** (`recipes/02-language-concurrency`): the Swift 6.3
+- **Part 2: Modern Swift language and concurrency** (`recipes/02-language-concurrency`): the Swift 6.3
   baseline, plus a migration on-ramp from the older Combine and `ObservableObject` shape.
-- **Part 3 — SwiftUI and app architecture** (`recipes/03-swiftui-architecture`).
-- **Part 4 — Persistence with SwiftData** (`recipes/04-persistence-swiftdata`).
-- **Part 5 — Networking** (`recipes/05-networking`).
-- **Part 6 — AI features in iOS apps** (`recipes/06-ai-features`): on-device Foundation Models, cloud
+- **Part 3: SwiftUI and app architecture** (`recipes/03-swiftui-architecture`).
+- **Part 4: Persistence with SwiftData** (`recipes/04-persistence-swiftdata`).
+- **Part 5: Networking** (`recipes/05-networking`).
+- **Part 6: AI features in iOS apps** (`recipes/06-ai-features`): on-device Foundation Models, cloud
   Claude from Swift, and a hybrid assistant that escalates from one to the other. The headline part.
-- **Part 7 — Testing** (`recipes/07-testing`).
-- **Part 8 — Tooling and CI/CD** (`recipes/08-tooling-ci`).
-- **Part 9 — Cross-cutting concerns** (`recipes/09-cross-cutting`): accessibility, performance, security,
+- **Part 7: Testing** (`recipes/07-testing`).
+- **Part 8: Tooling and CI/CD** (`recipes/08-tooling-ci`).
+- **Part 9: Cross-cutting concerns** (`recipes/09-cross-cutting`): accessibility, performance, security,
   and the modern 2026 surface.
 - **Appendices** (`appendix/`): the iOS 27 frontier, and contributing plus the currency protocol.
 
@@ -84,6 +84,10 @@ subject. [`CLAUDE.md`](CLAUDE.md) and [`SWIFT.md`](SWIFT.md) are the contract Cl
 `.claude/skills/` (`/new-recipe`, `/swift-build`, `/swift-test`, `/commit`) are the repeatable tasks; and a
 Stop hook blocks until `swift test` is green. Open the repo in Claude Code and run `/new-recipe` to scaffold
 your own.
+
+**Using this cookbook to build a different app?** If you are an agent (or a developer with one) mining this
+repo as a reference while building iOS code elsewhere, read [`docs/AGENT-GUIDE.md`](docs/AGENT-GUIDE.md). It
+covers what to read first, a task-to-recipe index, what to copy, and how to verify the result.
 
 ## License
 

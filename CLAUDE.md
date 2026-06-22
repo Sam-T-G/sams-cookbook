@@ -1,4 +1,4 @@
-# CLAUDE.md — Sam's Cookbook
+# CLAUDE.md: Sam's Cookbook
 
 A modern, Claude-native iOS development cookbook. iOS is what you learn; Claude is how you build.
 Every recipe teaches a real iOS technique and shows how to drive Claude Code to build it, with
@@ -39,12 +39,13 @@ and a simulator or device build for framework glue. A Stop hook blocks until `sw
 
 ## Context map (read on demand)
 
-- `context/concurrency-posture.md` — the Swift 6 concurrency baseline the whole book assumes.
-- `context/verify-loop.md` — the two-tier check and the hooks that gate it.
-- `context/subagent-doctrine.md` — when to fan out, and why forks do not see this file.
-- `context/voice-guide.md` — the house writing voice for all prose.
-- `docs/recipe-template.md` — the fixed section order every recipe follows.
-- `docs/currency-protocol.md` — how version facts stay auditable.
+- `context/concurrency-posture.md`: the Swift 6 concurrency baseline the whole book assumes.
+- `context/verify-loop.md`: the two-tier check and the hooks that gate it.
+- `context/subagent-doctrine.md`: when to fan out, and why forks do not see this file.
+- `context/voice-guide.md`: the house writing voice for all prose.
+- `docs/recipe-template.md`: the fixed section order every recipe follows.
+- `docs/currency-protocol.md`: how version facts stay auditable.
+- `docs/AGENT-GUIDE.md`: for an agent mining this repo as a reference to build a different iOS app.
 
 ## Imports
 

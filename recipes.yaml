@@ -1,4 +1,4 @@
-# recipes.yaml — the machine-readable manifest of every recipe.
+# recipes.yaml: the machine-readable manifest of every recipe.
 #
 # The manifest-check CI gate asserts this file and the recipes/ tree agree exactly: every recipe
 # directory has one entry here, and every entry points at a real directory. The /new-recipe skill

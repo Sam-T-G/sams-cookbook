@@ -1,4 +1,4 @@
-# Appendix B — Contributing and the currency protocol
+# Appendix B: Contributing and the currency protocol
 
 The contributing guide and the currency protocol live in `docs/`, so this appendix is a pointer plus the
 release-time checklist that ties them together.

@@ -1,4 +1,4 @@
-# SWIFT.md — how Claude writes Swift in this repo
+# SWIFT.md: how Claude writes Swift in this repo
 
 This file is the contract for every line of Swift in the cookbook. It is imported from `CLAUDE.md`
 and also applied as a path-scoped rule on `**/*.swift` (see `.claude/rules/swift.md`). When Claude

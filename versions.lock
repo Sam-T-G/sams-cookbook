@@ -1,4 +1,4 @@
-# versions.lock — the single source of truth for every pinned version in this cookbook.
+# versions.lock: the single source of truth for every pinned version in this cookbook.
 # Prose references this file instead of restating build numbers. The model-currency CI
 # gate checks the Claude model id against the current model list. Recheck the dated facts
 # before each release (see docs/currency-protocol.md).
