@@ -1,0 +1,49 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(./**)",
+      "Bash(swift build:*)",
+      "Bash(swift test:*)",
+      "Bash(swift format:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ],
+    "ask": [
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ],
+    "deny": [
+      "Bash(git push --force:*)",
+      "Read(./Secrets.xcconfig)",
+      "Read(./**/.dev.vars)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "scripts/format_swift.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "scripts/stop_gate.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "skillOverrides": {
+    "swift-build": { "effort": "low" },
+    "swift-test": { "effort": "low" }
+  }
+}

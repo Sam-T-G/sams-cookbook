@@ -1,0 +1,23 @@
+# recipes.yaml — the machine-readable manifest of every recipe.
+#
+# The manifest-check CI gate asserts this file and the recipes/ tree agree exactly: every recipe
+# directory has one entry here, and every entry points at a real directory. The /new-recipe skill
+# writes both sides. Author is inline (no separate authors registry to drift).
+#
+# tier: logic-runnable | simulator-required | device-required
+# tags (multi): Concurrency, Observation, Sensors, Networking, Persistence, Accessibility, Testing,
+#               Claude-Native-Build, AI-OnDevice, AI-Cloud, Migration, Tooling
+
+recipes:
+  - title: "The concurrency posture"
+    path: "recipes/02-language-concurrency/concurrency-posture"
+    part: "02-language-concurrency"
+    tier: "logic-runnable"
+    tags: [Concurrency, Claude-Native-Build, Testing]
+    author: "Samuel Gerungan"
+    built_against: "Swift 6.3 / Xcode 26.5 / iOS 26 / claude-opus-4-8"
+    date: "2026-06-21"
+    description: >
+      Sets the project-wide concurrency baseline: MainActor default isolation, strict concurrency
+      complete, warnings as errors. A pure-logic example with golden-vector tests that proves the
+      whole pipeline (template, /new-recipe, verify loop, CI) before any device-required recipe.

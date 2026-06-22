@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: Build and test recipes
+    runs-on: macos-15
+    strategy:
+      matrix:
+        # Pin the Xcode line from versions.lock. Add a second entry when bumping the baseline so the
+        # currency change is reviewed against both toolchains.
+        xcode: ["26.5"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode ${{ matrix.xcode }}
+        run: sudo xcode-select -s "/Applications/Xcode_${{ matrix.xcode }}.app"
+
+      - name: Show toolchain
+        run: swift --version
+
+      - name: Build and test all recipes
+        # Unit tests do not need code signing. Logic-runnable recipes run swift test; simulator- and
+        # device-required recipes are compile-checked here per their tier in recipes.yaml.
+        env:
+          CODE_SIGNING_ALLOWED: "NO"
+        run: scripts/test_all.sh

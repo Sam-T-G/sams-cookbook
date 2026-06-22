@@ -1,0 +1,27 @@
+# Pre-commit hooks for local enforcement before a commit lands. Install with `pre-commit install`.
+# These mirror the deterministic Claude Code hooks in .claude/settings.json so the same checks
+# hold whether a human or Claude makes the edit.
+
+repos:
+  - repo: local
+    hooks:
+      - id: swift-format
+        name: swift-format (lint mode)
+        entry: swift format lint --strict --recursive
+        language: system
+        types: [swift]
+        pass_filenames: true
+
+      - id: manifest-consistency
+        name: recipes.yaml matches the recipes/ tree
+        entry: scripts/check_manifest.sh
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: no-secrets
+        name: block tracked secrets
+        entry: bash -c 'git diff --cached --name-only | grep -E "(^|/)Secrets\.xcconfig$|\.dev\.vars$" && echo "Refusing to commit a secrets file." && exit 1 || exit 0'
+        language: system
+        pass_filenames: false
+        always_run: true

@@ -1,0 +1,59 @@
+# versions.lock — the single source of truth for every pinned version in this cookbook.
+# Prose references this file instead of restating build numbers. The model-currency CI
+# gate checks the Claude model id against the current model list. Recheck the dated facts
+# before each release (see docs/currency-protocol.md).
+#
+# Verified against primary sources on 2026-06-21.
+
+verified_on: "2026-06-21"
+
+toolchain:
+  swift:
+    version: "6.3"
+    released: "2026-03-24"
+    language_mode: "6"
+    package_tools_version: "6.2"   # enables MainActor default isolation in Package.swift
+    posture: "strict concurrency complete, warnings as errors, MainActor default isolation"
+    source: "https://www.swift.org/blog/"
+    note: "Swift 6.4 is pre-release as of 2026-06-21 (release/6.4.x branch only). Packages built
+      for the 6.x language mode build fine on a 6.4 toolchain, so a 6.4 dev machine is supported."
+  xcode:
+    version: "26.5"
+    build: "17F42"
+    released: "2026-05-11"
+    source: "https://developer.apple.com/news/releases/"
+  ios:
+    deployment_floor: "26.0"
+    shipping_consumer: "26.5.1"
+    shipping_released: "2026-06-01"
+    source: "https://developer.apple.com/news/releases/"
+
+test:
+  simulator: "iPhone 17 Pro"          # pinned for any snapshot test determinism
+  os: "iOS 26.5"
+
+claude:
+  default_model: "claude-opus-4-8"
+  thinking: "adaptive"
+  effort: "enum (low | medium | high), not budget_tokens"
+  output: "structured outputs (assistant prefill is removed on 4.6+)"
+  source: "https://platform.claude.com/docs/en/about-claude/models/overview"
+
+libraries:
+  swift-anthropic:
+    repo: "https://github.com/jamesrochabrun/SwiftAnthropic"
+    status: "de-facto community Messages-API client; pin exact version after the section-12 spike"
+    note: "No official Anthropic Swift SDK exists. Fallback is a raw URLSession /v1/messages client."
+  swift-dependencies:
+    repo: "https://github.com/pointfreeco/swift-dependencies"
+  swift-snapshot-testing:
+    repo: "https://github.com/pointfreeco/swift-snapshot-testing"
+  swiftlint-plugins:
+    repo: "https://github.com/SimplyDanny/SwiftLintPlugins"
+
+frontier:
+  # Quarantined to appendix/A-ios27-frontier. Not used by any core recipe until GM.
+  ios: "27 (WWDC26 beta, GM expected ~September 2026)"
+  xcode: "27 (beta build 27A5194q, seeded 2026-06-08)"
+  swift: "6.4 (pre-release)"
+  promotion_event: "At iOS 27 GM, promote Appendix A entries into Parts 4/6/7 (see appendix/B-contributing)."

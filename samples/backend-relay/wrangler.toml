@@ -1,0 +1,17 @@
+name = "claude-relay"
+main = "src/index.ts"
+compatibility_date = "2026-06-01"
+
+# The Anthropic key is a secret, never committed. Set it with:
+#   wrangler secret put ANTHROPIC_API_KEY
+# Local dev reads it from .dev.vars (gitignored). See README.
+
+[vars]
+ANTHROPIC_VERSION = "2023-06-01"
+APP_ATTEST_TEAM_AND_BUNDLE = "TEAMID.com.example.app"
+
+# For App Attest state (key id -> public key, last counter), bind a KV namespace or a Durable Object once
+# the verification spike lands:
+# [[kv_namespaces]]
+# binding = "ATTEST"
+# id = "..."

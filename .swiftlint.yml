@@ -1,0 +1,34 @@
+# SwiftLint config for the cookbook. Run via the SimplyDanny build-tool plugin (see Part 8).
+# Kept lean on purpose: we lint for real problems, not style nags the formatter already owns.
+
+disabled_rules:
+  - trailing_comma          # swift-format owns comma style
+  - todo                    # recipes legitimately mark forward notes
+
+opt_in_rules:
+  - empty_count
+  - first_where
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - last_where
+  - redundant_nil_coalescing
+  - sorted_first_last
+  - unused_import
+
+force_cast: error
+force_try: error
+force_unwrapping: error
+
+line_length:
+  warning: 100
+  error: 140
+  ignores_comments: true
+  ignores_urls: true
+
+excluded:
+  - .build
+  - "**/.build"
+  - DerivedData
+  - samples/backend-relay/node_modules
+
+reporter: "xcode"

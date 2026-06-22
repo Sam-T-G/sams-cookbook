@@ -1,0 +1,28 @@
+name: Model currency
+
+on:
+  schedule:
+    - cron: "0 14 * * 1"   # Mondays, a low-frequency drift check
+  workflow_dispatch:
+
+jobs:
+  model-currency:
+    name: Claude model id is still current
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read the pinned model id
+        id: pinned
+        run: |
+          model="$(sed -nE 's/.*default_model:\s*"([^"]*)".*/\1/p' versions.lock | head -1)"
+          echo "model=$model" >> "$GITHUB_OUTPUT"
+          echo "Pinned model: $model"
+
+      # This step is a placeholder for the headless check. In a repo with an API key configured as a
+      # secret, run `claude -p` to confirm the pinned id is still a current model and open an issue if it
+      # has been superseded. Without a key, this job just surfaces the pinned id for a human to eyeball.
+      - name: Note
+        run: |
+          echo "To automate: claude -p --output-format json 'Is ${{ steps.pinned.outputs.model }} still a current Claude model id? Answer yes or no with the current default.'"
+          echo "See docs/currency-protocol.md for the manual recheck list."

@@ -1,0 +1,15 @@
+name: Manifest check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  manifest:
+    name: recipes.yaml matches the tree
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check manifest consistency
+        run: scripts/check_manifest.sh
