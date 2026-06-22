@@ -35,6 +35,19 @@ recipes:
       that proves the rewrite preserves behavior step for step. The migration on-ramp from the shape most
       existing iOS code actually starts at.
 
+  - title: "A typed networking layer"
+    path: "recipes/05-networking/typed-api-client"
+    part: "05-networking"
+    tier: "logic-runnable"
+    tags: [Networking, Claude-Native-Build, Testing]
+    author: "Samuel Gerungan"
+    built_against: "Swift 6.3 / Xcode 26.5 / iOS 26 / claude-opus-4-8"
+    date: "2026-06-21"
+    description: >
+      An actor API client over URLSession behind a Transport seam: validates HTTP status into a typed
+      APIError, decodes through one centralized snake_case + ISO-8601 decoder, logs non-2xx with os.Logger.
+      Golden vectors cover decode, status mapping, decoding errors, transport failures, and request building.
+
   - title: "Cloud Claude from Swift"
     path: "recipes/06-ai-features/cloud-claude-chat"
     part: "06-ai-features"

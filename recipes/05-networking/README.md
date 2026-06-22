@@ -5,8 +5,10 @@ with typed domain errors and `os.Logger`.
 
 ## Planned recipes
 
-- **A typed networking layer** — an actor API client, validating `HTTPURLResponse` status into a typed
-  domain error, a centralized `JSONDecoder`, `os.Logger` per subsystem, streaming with `bytes(for:)`.
+- **A typed networking layer** (built, logic-runnable) — `typed-api-client/`. An actor API client over
+  `URLSession` behind a `Transport` seam: validates `HTTPURLResponse` status into a typed domain error,
+  decodes through one centralized `JSONDecoder` (snake_case + ISO-8601), logs non-2xx with `os.Logger`.
+  Seven golden vectors. Still to add: streaming a response with `bytes(for:)`.
 - **Cancellation and parallel fetch** — cancel-previous search-as-you-type, `try Task.checkCancellation()`,
   `withThrowingTaskGroup` with bounded concurrency, SwiftUI `.task` auto-cancel.
 - **HTTP caching done right** — `URLCache` configuration, ETag and 304 revalidation, `willCacheResponse`
