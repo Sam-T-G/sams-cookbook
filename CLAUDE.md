@@ -50,3 +50,10 @@ and a simulator or device build for framework glue. A Stop hook blocks until `sw
 ## Imports
 
 @SWIFT.md
+
+## Working with AI here
+
+This cookbook teaches Claude-native iOS, so the working method is part of the subject. The verify loop above is the mechanism; the principle behind it is that verification is the craft. Generation is cheap and judgment is scarce, so review every line a recipe's agent ships, be skeptical of clever-looking code, and confirm imports resolve to real packages before trusting a build.
+
+- Each recipe's golden vectors and `verify-output/` are the contract: they say what "correct" means and check it, which is what lets the Stop hook gate on green tests instead of vibes.
+- Agents nail the well-specified body of a recipe; the last 20% (edge cases, error handling, the framework-glue integration points) is where attention earns its keep. Write that into the recipe so the lesson shows the judgment, not just the happy path.
